@@ -6,6 +6,7 @@ import {
   sumTotals,
   sumQuantities,
   getQuantity,
+  alert,
 } from '../../utils';
 import { Item } from '../../interfaces';
 
@@ -184,7 +185,6 @@ describe('Utils functions', () => {
 
   describe('sumTotals', () => {
     it('multiplies quantities by values and sums total', () => {
-      const result = 15;
       expect(
         sumTotals([
           {
@@ -291,6 +291,21 @@ describe('Utils functions', () => {
           111,
         ),
       ).toBe(0);
+    });
+  });
+
+  describe('alert', () => {
+    it('gets called', () => {
+      const mock_alert = jest.fn();
+
+      jest.mock('react-native/Libraries/Alert/Alert.js', () => {
+        return {
+          alert: mock_alert,
+        };
+      });
+
+      alert();
+      expect(mock_alert).toHaveBeenCalled();
     });
   });
 });

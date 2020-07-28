@@ -1,11 +1,14 @@
+import { Alert as RNAlert } from 'react-native';
 import { Item } from '../interfaces';
 
+// remove item from basket
 export const removeItem = (basketItems: Item[], id: number): Item[] | [] => {
   let newState: Item[] = basketItems.filter((item: Item) => item.id !== id);
 
   return newState;
 };
 
+// increase quantity by 1
 export const increment = (basketItems: Item[], item: Item): Item[] | [] => {
   const index: number = basketItems.findIndex((elem) => elem.id === item.id);
   let newState = [...basketItems];
@@ -22,6 +25,7 @@ export const increment = (basketItems: Item[], item: Item): Item[] | [] => {
   return newState;
 };
 
+// decrease quantity by 1
 export const decrement = (basketItems: Item[], item: Item): Item[] | [] => {
   const index: number = basketItems.findIndex((elem) => elem.id === item.id);
   let newState = [...basketItems];
@@ -41,6 +45,7 @@ export const convertToTwoDP = (num: number) => {
   return (Math.round(num * 100) / 100).toFixed(2);
 };
 
+// total basket amount
 export const sumTotals = (basketItems: Item[]): number => {
   const total = basketItems.reduce(
     (acc, val) => (acc += val.price * val.quantity),
@@ -49,14 +54,24 @@ export const sumTotals = (basketItems: Item[]): number => {
   return Number(convertToTwoDP(total));
 };
 
-// total basket amount
+// quantity of line items (including multiples)
 export const sumQuantities = (basketItems: Item[]): number => {
   const total = basketItems.reduce((acc, val) => (acc += val.quantity), 0);
   return Number(convertToTwoDP(total));
 };
 
-// total number of line items
+// quantity of single line item
 export const getQuantity = (basketItems: Item[], id: number): number => {
   const item = basketItems.find((elem) => elem.id === id);
   return item ? item.quantity : 0;
+};
+
+// alert message for network error
+export const alert = () => {
+  return RNAlert.alert(
+    'Something went wrong!',
+    'Please try again later',
+    [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+    { cancelable: false },
+  );
 };

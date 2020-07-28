@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components Index file Remains Unchanged 1`] = `
+Object {
+  "AddRemoveButtons": [Function],
+  "Icon": [Function],
+  "Picker": [Function],
+  "ProductCard": [Function],
+  "Spinner": [Function],
+  "SquareButton": [Function],
+  "TextButton": [Function],
+  "TotalAmount": [Function],
+}
+`;

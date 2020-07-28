@@ -10,14 +10,7 @@
 
 import axios from 'axios';
 import React, { FC, useState, useEffect } from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-  Dimensions,
-} from 'react-native';
+import { SafeAreaView, ScrollView, StatusBar } from 'react-native';
 import { PRODUCTS_URL } from '../config';
 import { ProductCard, Picker, TotalAmount, Spinner } from '../components';
 import {
@@ -27,6 +20,7 @@ import {
   sumTotals,
   sumQuantities,
   getQuantity,
+  alert,
 } from '../utils';
 import { Item, SelectedColor } from '../interfaces';
 
@@ -56,13 +50,17 @@ const Home: FC = () => {
         setItemsToRender(newState);
         setLoading(false);
       })
-      .catch((error) => console.log('ERROR', error));
+      .catch(() => {
+        setLoading(false);
+        alert();
+      });
   }, []);
   return loading ? (
     <Spinner />
   ) : (
     <>
-      <StatusBar translucent backgroundColor="transparent" />
+      {/* <StatusBar translucent backgroundColor="transparent" /> */}
+      <StatusBar />
       <SafeAreaView>
         {items.length ? (
           <ScrollView contentInsetAdjustmentBehavior="automatic">
@@ -94,7 +92,6 @@ const Home: FC = () => {
                     setBasketItems(newState);
                   }}
                   subtractOnPress={() => {
-                    // TOAST or Alert
                     const newState = decrement(basketItems, item);
                     setBasketItems(newState);
                   }}
@@ -105,11 +102,19 @@ const Home: FC = () => {
                 />
               );
             })}
-            <TotalAmount
-              amount={sumTotals(basketItems)}
-              basketItemsQuantity={sumQuantities(basketItems)}
-            />
+            {items.length !== 0 ? (
+              <TotalAmount
+                amount={sumTotals(basketItems)}
+                basketItemsQuantity={sumQuantities(basketItems)}
+              />
+            ) : null}
           </ScrollView>
+        ) : null}
+        {items.length === 0 ? (
+          <TotalAmount
+            amount={sumTotals(basketItems)}
+            basketItemsQuantity={sumQuantities(basketItems)}
+          />
         ) : null}
       </SafeAreaView>
     </>
