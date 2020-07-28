@@ -1,4 +1,3 @@
-// import requestAnimationFrame from '../src/__tests__/tempPolyfills';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
