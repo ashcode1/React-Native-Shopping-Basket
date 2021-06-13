@@ -40,6 +40,7 @@ const Home: FC = () => {
     axios
       .get(PRODUCTS_URL)
       .then((response) => {
+        console.log('RESPONSE: ', response.data);
         const newState = response.data.map((item: Item) => {
           return {
             ...item,
@@ -59,7 +60,6 @@ const Home: FC = () => {
     <Spinner />
   ) : (
     <>
-      {/* <StatusBar translucent backgroundColor="transparent" /> */}
       <StatusBar />
       <SafeAreaView>
         {items.length ? (
