@@ -2,7 +2,8 @@
 
 A simple products list and basket, built using React Native with Typescript.
 
-![BAsket Items](https://github.com/ashcode1/React-Native-Shopping-Basket/blob/master/src/screenshots/basket.png?raw=true)
+<!-- ![BAsket Items](https://github.com/ashcode1/React-Native-Shopping-Basket/blob/master/src/screenshots/basket.png?raw=true) -->
+<img src="https://github.com/ashcode1/React-Native-Shopping-Basket/blob/master/src/screenshots/basket.png?raw=true" width="50%">
 
 ## Getting Started
 
